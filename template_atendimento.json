@@ -1,0 +1,1475 @@
+{
+    "onboarding": {
+        "attendanceTemplateVersion": "1.0.0",
+        "author": "Solutions Lab",
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "a5f855b2-7344-44ad-bf8b-75bccd63d288",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": false,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "welcome",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "matches",
+                        "values": [
+                            ".*"
+                        ]
+                    }
+                ],
+                "$connId": "con_3",
+                "$invalid": false,
+                "$id": "b6b18363-20e5-40bc-850c-2cd6f15e4efa"
+            }
+        ],
+        "$enteringCustomActions": [],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "id": "onboarding",
+        "root": true,
+        "$position": {
+            "top": "76px",
+            "left": "225px"
+        },
+        "$title": "Início",
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "fallback": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "95b10ba8-e351-4d16-9b10-ce14961cb1fd",
+                            "type": "text/plain"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "error",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "matches",
+                        "values": [
+                            ".*"
+                        ]
+                    }
+                ],
+                "$connId": "con_8",
+                "$invalid": false,
+                "$id": "06d955b3-9c89-4bae-abd7-2d370eead5b0"
+            }
+        ],
+        "$enteringCustomActions": [],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "onboarding",
+            "$invalid": false
+        },
+        "id": "fallback",
+        "$position": {
+            "top": "587px",
+            "left": "358px"
+        },
+        "$title": "Exceções",
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "welcome": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "00000000-0000-0000-0000-000000000000",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "00000000-0000-0000-0000-000000000000",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:3147"
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "00000000-0000-0000-0000-000000000001",
+                        "type": "text/plain",
+                        "content": "Olá {{contact.name}}!\nÉ um prazer falar com você 😊"
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "00000000-0000-0000-0000-000000000001",
+                            "type": "text/plain",
+                            "content": "Olá {{contact.name}}!\nÉ um prazer falar com você 😊"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:3148"
+            },
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "cf8c9892-92a7-4a39-b169-9b8f5f7ef7a4",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:3149"
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "276b2bef-d574-474d-9c7d-e51671a46114",
+                "$connId": "con_13",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "matches",
+                        "values": [
+                            ".*"
+                        ],
+                        "$$hashKey": "object:3358"
+                    }
+                ],
+                "$invalid": false,
+                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e",
+                "$$hashKey": "object:3339"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "type": "TrackEvent",
+                "$title": "TrackAnyAttendance",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "AtendimentosTotais",
+                    "action": "AtendimentosTotais"
+                },
+                "conditions": []
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "id": "welcome",
+        "$position": {
+            "top": "161px",
+            "left": "227px"
+        },
+        "$title": "1.0 - Boas vindas",
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "error": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "00000000-0000-0000-0000-000000000002",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "00000000-0000-0000-0000-000000000002",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:4896"
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "00000000-0000-0000-0000-000000000003",
+                        "type": "text/plain",
+                        "content": "Desculpe, não consegui entender!"
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "00000000-0000-0000-0000-000000000003",
+                            "type": "text/plain",
+                            "content": "Desculpe, não consegui entender!"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:4897"
+            },
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "a1f34699-dd5c-43b6-8345-fde58dc32c0d",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:4898"
+            }
+        ],
+        "$conditionOutputs": [],
+        "$enteringCustomActions": [],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "onboarding",
+            "$invalid": false
+        },
+        "id": "error",
+        "$position": {
+            "top": "587px",
+            "left": "596px"
+        },
+        "$title": "Erro padrão",
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "7fb24b66-f182-4a6b-82ec-17cd0d87cf16",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:5674"
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "3c555d39-68eb-466b-9063-6adeb01132fc",
+                "$connId": "con_18",
+                "conditions": [
+                    {
+                        "source": "context",
+                        "comparison": "equals",
+                        "values": [
+                            "false"
+                        ],
+                        "variable": "isWorkTime",
+                        "$$hashKey": "object:5868"
+                    }
+                ],
+                "$invalid": false,
+                "$id": "b7295a2c-0f47-4140-aea9-764c14745539",
+                "$$hashKey": "object:5846"
+            },
+            {
+                "stateId": "95118c04-1f32-40df-b1b0-54fb24fa2fc7",
+                "$connId": "con_23",
+                "conditions": [
+                    {
+                        "source": "context",
+                        "comparison": "equals",
+                        "values": [
+                            "true"
+                        ],
+                        "variable": "isWorkTime",
+                        "$$hashKey": "object:5895"
+                    }
+                ],
+                "$invalid": false,
+                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056",
+                "$$hashKey": "object:5847"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "type": "ExecuteScript",
+                "$title": "CheckWorkTime",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = parseInt(offset);\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n    \n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n",
+                    "inputVariables": [
+                        "config.dateTimeOffset",
+                        "attendanceTimeObject"
+                    ],
+                    "outputVariable": "isWorkTime",
+                    "LocalTimeZoneEnabled": false
+                },
+                "conditions": []
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "id": "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e",
+        "root": false,
+        "$title": "2.0 - Verifica Horário Atendimento",
+        "$position": {
+            "top": "263px",
+            "left": "894px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "95118c04-1f32-40df-b1b0-54fb24fa2fc7": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "425aa5d2-fcf9-4094-a52c-73917f47875c",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:1414"
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "143e0124-ec4e-462d-8369-efc61791afe6",
+                "$connId": "con_28",
+                "conditions": [
+                    {
+                        "source": "context",
+                        "comparison": "equals",
+                        "values": [
+                            "false"
+                        ],
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1608"
+                    }
+                ],
+                "$invalid": false,
+                "$id": "e391e4ce-963b-4468-9645-ec123041451f",
+                "$$hashKey": "object:1586"
+            },
+            {
+                "stateId": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
+                "$connId": "con_33",
+                "conditions": [
+                    {
+                        "source": "context",
+                        "comparison": "equals",
+                        "values": [
+                            "true"
+                        ],
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1635"
+                    }
+                ],
+                "$invalid": false,
+                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96",
+                "$$hashKey": "object:1587"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "type": "ProcessCommand",
+                "$title": "CheckAgentsAvailability",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@desk.msging.net",
+                    "method": "get",
+                    "uri": "/attendants",
+                    "variable": "result"
+                }
+            },
+            {
+                "type": "ExecuteScript",
+                "$title": "HandleCheckRequest",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "// Receive the variables as parameters\nfunction run(result) {\n    result = JSON.parse(result);\n    \n    let hasAttendant = false;\n\n    if(result.resource && result.resource.total >= 1){\n        hasAttendant  = result.resource.items.some(function(attendant){\n            return attendant.status === 'Online';\n        });\n    }\n    return hasAttendant;\n}",
+                    "inputVariables": [
+                        "result"
+                    ],
+                    "outputVariable": "hasAttendant",
+                    "LocalTimeZoneEnabled": false
+                }
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "id": "95118c04-1f32-40df-b1b0-54fb24fa2fc7",
+        "root": false,
+        "$title": "3.0 - Verifica Disponibilidade Atendentes",
+        "$position": {
+            "top": "260px",
+            "left": "1078px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "3c555d39-68eb-466b-9063-6adeb01132fc": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "aa0d29d3-bab1-427d-9188-93b3638acbcd",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "aa0d29d3-bab1-427d-9188-93b3638acbcd",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:1889"
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "504721a0-3d44-4e95-82cc-dd33718b906a",
+                        "type": "text/plain",
+                        "content": "Infelizmente não temos atendentes disponíveis agora. Nosso horário de atendimento é de {{attendanceTimeObject@start}} a {{attendanceTimeObject@end}}",
+                        "metadata": {}
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "504721a0-3d44-4e95-82cc-dd33718b906a",
+                            "type": "text/plain",
+                            "content": "Infelizmente não temos atendentes disponíveis agora. Nosso horário de atendimento é de {{attendanceTimeObject@start}} a {{attendanceTimeObject@end}}"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:1890"
+            },
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "fd1c385b-7adc-4efb-b829-3b137d4e97c0",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:1891"
+            }
+        ],
+        "$conditionOutputs": [],
+        "$enteringCustomActions": [
+            {
+                "type": "TrackEvent",
+                "$title": "TrackRequestsOutWorkTime",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "Solicitação",
+                    "action": "Fora Horario Atendimento"
+                }
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e",
+            "$invalid": false
+        },
+        "id": "3c555d39-68eb-466b-9063-6adeb01132fc",
+        "root": false,
+        "$title": "2.1 - Fora do Horário de Atendimento",
+        "$position": {
+            "top": "368px",
+            "left": "892px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "desk:b69ef3a2-9983-48f8-9d40-16bad478a460": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "b04c3ac0-5b0c-4f61-ade4-9adbd31ae1fc",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "$isDeskOutput": true,
+                "conditions": [
+                    {
+                        "source": "context",
+                        "variable": "input.type",
+                        "comparison": "equals",
+                        "values": [
+                            "application/vnd.iris.ticket+json"
+                        ]
+                    },
+                    {
+                        "source": "context",
+                        "variable": "input.content@status",
+                        "comparison": "equals",
+                        "values": [
+                            "ClosedAttendant"
+                        ]
+                    }
+                ],
+                "$invalid": false,
+                "stateId": "2b9bfb62-6346-4762-99ab-733d0c00d1a3",
+                "$connId": "con_38",
+                "$id": "d11142d1-520c-43bd-b95b-4160a61f51af"
+            },
+            {
+                "$isDeskOutput": true,
+                "conditions": [
+                    {
+                        "source": "context",
+                        "variable": "input.type",
+                        "comparison": "equals",
+                        "values": [
+                            "application/vnd.iris.ticket+json"
+                        ]
+                    },
+                    {
+                        "source": "context",
+                        "variable": "input.content@status",
+                        "comparison": "equals",
+                        "values": [
+                            "ClosedClient"
+                        ]
+                    }
+                ],
+                "$invalid": false,
+                "stateId": "2b9bfb62-6346-4762-99ab-733d0c00d1a3",
+                "$connId": "con_43",
+                "$id": "e50bc685-bd27-459d-be68-e18fcff490d3"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "type": "ForwardMessageToDesk",
+                "settings": {},
+                "$invalid": false
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+            "$invalid": false
+        },
+        "id": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "root": false,
+        "$title": "4.0 - Atendimento humano",
+        "$position": {
+            "top": "259px",
+            "left": "1443px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "2b9bfb62-6346-4762-99ab-733d0c00d1a3": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "b950d0ee-cd9b-4aec-949b-02b8242cbeea",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "b950d0ee-cd9b-4aec-949b-02b8242cbeea",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "90ec55b8-aadd-4f92-bf1a-dec84eb60244",
+                        "type": "text/plain",
+                        "content": "Atendimento finalizado!"
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "90ec55b8-aadd-4f92-bf1a-dec84eb60244",
+                            "type": "text/plain",
+                            "content": "Atendimento finalizado!"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "8b33aca6-bda4-4dec-8a22-5b5f51a2ec53",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "8b33aca6-bda4-4dec-8a22-5b5f51a2ec53",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "6bfaa60e-ce61-43fb-978e-80b1c5a15d8d",
+                        "type": "text/plain",
+                        "content": "Em uma escala de 0 a 10, onde 0 é nada satisfeito e 10 é totalmente satisfeito, qual nota você dá para esse atendimento?"
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "6bfaa60e-ce61-43fb-978e-80b1c5a15d8d",
+                            "type": "text/plain",
+                            "content": "Em uma escala de 0 a 10, onde 0 é nada satisfeito e 10 é totalmente satisfeito, qual nota você dá para esse atendimento?"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "64b7d83d-e2f4-4df4-8ad4-c9489c0f15f9",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "score"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false,
+                    "variable": "score"
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "a0151d70-16b1-455c-9534-a15acac75993",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        },
+                        "metadata": {
+                            "#stateName": "{{state.name}}",
+                            "#stateId": "{{state.id}}",
+                            "#messageId": "{{input.message@id}}",
+                            "#previousStateId": "{{state.previous.id}}",
+                            "#previousStateName": "{{state.previous.name}}"
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "a0151d70-16b1-455c-9534-a15acac75993",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "dea1d712-9374-4990-8f99-5f38a06d5263",
+                        "type": "text/plain",
+                        "content": "Obrigado pela participação.",
+                        "metadata": {
+                            "#stateName": "{{state.name}}",
+                            "#stateId": "{{state.id}}",
+                            "#messageId": "{{input.message@id}}",
+                            "#previousStateId": "{{state.previous.id}}",
+                            "#previousStateName": "{{state.previous.name}}"
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "dea1d712-9374-4990-8f99-5f38a06d5263",
+                            "type": "text/plain",
+                            "content": "Obrigado pela participação."
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [],
+        "$enteringCustomActions": [],
+        "$leavingCustomActions": [
+            {
+                "type": "ExecuteScript",
+                "$title": "NormalizeScore",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "// Receive the variables as parameters\nfunction run(score) {\n    if(isNumeric(score)){\n       score = parseInt(score);\n       if(score < 0) return 0;\n       if(score > 10) return 10;\n       return score;\n    }\n    return \"Outro\";\n}\n\n//check if a string has a number\nfunction isNumeric(num){\n  return !isNaN(num)\n}",
+                    "inputVariables": [
+                        "score"
+                    ],
+                    "outputVariable": "score"
+                }
+            },
+            {
+                "type": "TrackEvent",
+                "$title": "TrackScoreValue",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "Score",
+                    "action": "{{score}}"
+                }
+            }
+        ],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "onboarding",
+            "$invalid": false
+        },
+        "id": "2b9bfb62-6346-4762-99ab-733d0c00d1a3",
+        "root": false,
+        "$title": "5.0 - Nota de atendimento",
+        "$position": {
+            "top": "261px",
+            "left": "1629px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "143e0124-ec4e-462d-8369-efc61791afe6": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "95011b31-5279-4d98-968d-b5af3c6d6b26",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "95011b31-5279-4d98-968d-b5af3c6d6b26",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:2280"
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "2d2d011a-e3d5-4807-a347-d6cd9b3f43c8",
+                        "type": "text/plain",
+                        "content": "Desculpe, não temos atendentes disponíveis no momento. Por favor, tente novamente mais tarde."
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "2d2d011a-e3d5-4807-a347-d6cd9b3f43c8",
+                            "type": "text/plain",
+                            "content": "Desculpe, não temos atendentes disponíveis no momento. Por favor, tente novamente mais tarde."
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:2281"
+            },
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "76137ac2-42ab-4ee9-aef7-743cb9160a98",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false,
+                "$$hashKey": "object:2282"
+            }
+        ],
+        "$conditionOutputs": [],
+        "$enteringCustomActions": [
+            {
+                "type": "TrackEvent",
+                "$title": "TrackRequestsWithoutAgent",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "Solicitação",
+                    "action": "Sem Atendente"
+                }
+            },
+            {
+                "type": "TrackEvent",
+                "$title": "TrackAbsoluteNotAvailableAgents",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "Atendentes Indisponíveis",
+                    "action": "Atendentes Indisponíveis"
+                }
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e",
+            "$invalid": false
+        },
+        "id": "143e0124-ec4e-462d-8369-efc61791afe6",
+        "root": false,
+        "$title": "3.2 - Nenhum atendente disponível",
+        "$position": {
+            "top": "386px",
+            "left": "1083px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "4c0d9be0-bd3d-4e72-b105-a2ac741e5149": {
+        "$contentActions": [
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "adaea5c6-03e0-4ba5-9ef6-e1e3f9e9067e",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "adaea5c6-03e0-4ba5-9ef6-e1e3f9e9067e",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "04835382-935c-4372-8778-69b4b0912d60",
+                        "type": "text/plain",
+                        "content": "A partir de agora um de nossos atendentes vai respondê-lo."
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "04835382-935c-4372-8778-69b4b0912d60",
+                            "type": "text/plain",
+                            "content": "A partir de agora um de nossos atendentes vai respondê-lo."
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "96272fb2-b301-4611-921b-69aa74791395",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "96272fb2-b301-4611-921b-69aa74791395",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "8f63c111-4933-4e07-a9be-574ca9d0fbda",
+                        "type": "text/plain",
+                        "content": "Como podemos ajudá-lo?"
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "8f63c111-4933-4e07-a9be-574ca9d0fbda",
+                            "type": "text/plain",
+                            "content": "Como podemos ajudá-lo?"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "86667929-c0a7-473d-b066-fbed10260d73",
+                            "type": "text/plain",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right"
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+                "$connId": "con_48",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "matches",
+                        "values": [
+                            ".*"
+                        ]
+                    }
+                ],
+                "$invalid": false,
+                "$id": "8053e8e9-e337-4c87-849b-3e23aec61108"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "type": "TrackEvent",
+                "$title": "TrackAttendances",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "AtendimentosRealizados",
+                    "action": "AtendimentosRealizados"
+                }
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "id": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
+        "root": false,
+        "$title": "3.1 - Atendente disponível",
+        "$position": {
+            "top": "259px",
+            "left": "1261px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "a28e3bdf-3b48-40bc-953c-1caac72fdc21": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "8fd8ec6b-78c2-4314-a0ce-7b030e2d8482",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right",
+                        "editing": false
+                    },
+                    "$invalid": false,
+                    "validation": {
+                        "type": "text/plain",
+                        "rule": "text",
+                        "error": "Informe um tempo de inatividade"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:1007"
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e",
+                "$connId": "con_53",
+                "$id": "6e021ada-37eb-4f2d-acba-8c7f20c5dd45",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "exists",
+                        "values": [],
+                        "$$hashKey": "object:1198"
+                    }
+                ],
+                "$invalid": false,
+                "$$hashKey": "object:1179"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "$id": "f4e53e94-6c0b-4bf3-bacd-ee78d2cf9d4e",
+                "type": "ProcessCommand",
+                "$title": "get openingTime",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@msging.net",
+                    "method": "get",
+                    "uri": "/resources/{{attendanceTimeObject@start}}",
+                    "variable": "openingTime"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "7c579f16-1667-4ca1-aa9a-d63b694d0c1e",
+                "type": "ProcessCommand",
+                "$title": "get closure",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@msging.net",
+                    "method": "get",
+                    "uri": "/resources/{{attendanceTimeObject@end}}",
+                    "variable": "end"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "d6f927da-0acb-49e1-8301-90c0d3741f4e",
+                "type": "ProcessCommand",
+                "$title": "get days",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@msging.net",
+                    "method": "get",
+                    "uri": "/resources/{{attendanceTimeObject@days}}",
+                    "variable": "days"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "0f08c598-81bb-4adb-8dd6-41c39c95f790",
+                "type": "ExecuteScript",
+                "$title": "build attendanceObject",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "/**\n            * All input variables needs to be passed as function param;\n            * Objects received as param needs to be parsed. Ex.: JSON.parse(inputVariable1);\n            * Objects returned needs to be stringfied. Ex.: JSON.stringify(inputVariable1);\n            **/\n\nconst getValue = (resourceResponse) => {\n    resourceResponse = JSON.parse(resourceResponse);\n    return resourceResponse.status == 'success' ? resourceResponse.resource : \"no_value\";\n}\n\n\nconst run = (starTime, endTime, days) => {\n    return {\n        start: getValue(starTime),\n        end: getValue(endTime),\n        days: getValue(days)\n    };\n}",
+                    "inputVariables": [
+                        "openingTime",
+                        "end",
+                        "days"
+                    ],
+                    "outputVariable": "attendanceTimeObject",
+                    "LocalTimeZoneEnabled": false
+                },
+                "conditions": []
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "$tags": [],
+        "id": "a28e3bdf-3b48-40bc-953c-1caac72fdc21",
+        "root": false,
+        "$title": "1.5 - Configura tempo de atendimento",
+        "$position": {
+            "top": "265px",
+            "left": "709px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "276b2bef-d574-474d-9c7d-e51671a46114": {
+        "$contentActions": [
+            {
+                "input": {
+                    "bypass": true,
+                    "$cardContent": {
+                        "document": {
+                            "id": "c59d8436-6383-4594-a09a-0b4a4fd95e08",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right",
+                        "editing": false
+                    },
+                    "$invalid": false,
+                    "validation": {
+                        "type": "text/plain",
+                        "rule": "text",
+                        "error": "Informe um tempo de inatividade"
+                    }
+                },
+                "$invalid": false,
+                "$$hashKey": "object:546"
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "a28e3bdf-3b48-40bc-953c-1caac72fdc21",
+                "$connId": "con_58",
+                "$id": "7860d497-c74b-4fdd-9e67-4fefcf86d4c3",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "exists",
+                        "values": [],
+                        "$$hashKey": "object:791"
+                    }
+                ],
+                "$invalid": false,
+                "$$hashKey": "object:772"
+            }
+        ],
+        "$enteringCustomActions": [
+            {
+                "$id": "022fa652-0b35-4a03-bc99-dd0e2163e81e",
+                "type": "ProcessCommand",
+                "$title": "get resources",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@msging.net",
+                    "method": "get",
+                    "uri": "/resources",
+                    "variable": "resourceResponse"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "72494496-7f63-40ec-8efb-14bf6e7d04ab",
+                "type": "ProcessCommand",
+                "$title": "get attendance rules",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@desk.msging.net",
+                    "method": "get",
+                    "uri": "/rules",
+                    "variable": "attendanceRules"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "0229119d-92d9-4955-ac3a-ee707dfa314d",
+                "type": "ExecuteScript",
+                "$title": "get contact queue value",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "const get_teams = (attendanceRules) => {\n    const teams = Array.from(new Set(attendanceRules.map(ar => ar.team.replace(/\\s/g, \"\"))));\n    if(teams != undefined){\n        const teamRegex = teams.reduce((tr, teamsRegex) => `${tr}|${teamsRegex.trim()}`);\n        return teamRegex;\n    }\n\n    return \"no_rules\";\n}\n\n\nconst run = (contact, attendanceRulesResponse) =>{\n    contact = JSON.parse(contact);\n    attendanceRulesResponse = JSON.parse(attendanceRulesResponse);\n    const attendanceRules = attendanceRulesResponse.status == 'success' ? attendanceRulesResponse.resource.items : [];\n    const queuePattern = new RegExp(\"queue|fila|equipe|team|time|atendente|attendant\", \"i\");\n    const queueKey = Object.keys(contact.extras).find(c => queuePattern.test(c));\n    const hasKey = queueKey != undefined;\n    return {\n        hasKey : hasKey,\n        value : hasKey ? contact.extras[queueKey] : \"\",\n        available: get_teams(attendanceRules)\n    };\n}",
+                    "inputVariables": [
+                        "contact.serialized",
+                        "attendanceRules"
+                    ],
+                    "outputVariable": "contactQueue",
+                    "LocalTimeZoneEnabled": false
+                },
+                "conditions": []
+            },
+            {
+                "$id": "92662cde-a5dc-4a05-9043-a73a4c315d64",
+                "type": "ExecuteScript",
+                "$title": "get attendanceTime per day",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) => \n            day.test(dr) && \n            !teamsAvailablePattern.test(dr) && \n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
+                    "inputVariables": [
+                        "resourceResponse",
+                        "config.dateTimeOffset",
+                        "contactQueue"
+                    ],
+                    "outputVariable": "attendanceTimeObject",
+                    "LocalTimeZoneEnabled": false
+                },
+                "conditions": []
+            }
+        ],
+        "$leavingCustomActions": [],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "$tags": [],
+        "id": "276b2bef-d574-474d-9c7d-e51671a46114",
+        "root": false,
+        "$title": "1.2 - Busca informações de atendimento",
+        "$position": {
+            "top": "265px",
+            "left": "526px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    }
+}
