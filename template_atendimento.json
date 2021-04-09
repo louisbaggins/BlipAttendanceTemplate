@@ -138,8 +138,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:3147"
+                "$invalid": false
             },
             {
                 "action": {
@@ -160,8 +159,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:3148"
+                "$invalid": false
             },
             {
                 "input": {
@@ -178,8 +176,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:3149"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -192,13 +189,11 @@
                         "comparison": "matches",
                         "values": [
                             ".*"
-                        ],
-                        "$$hashKey": "object:3358"
+                        ]
                     }
                 ],
                 "$invalid": false,
-                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e",
-                "$$hashKey": "object:3339"
+                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e"
             }
         ],
         "$enteringCustomActions": [
@@ -214,7 +209,20 @@
                 "conditions": []
             }
         ],
-        "$leavingCustomActions": [],
+        "$leavingCustomActions": [
+            {
+                "$id": "4ece2796-96cd-4179-b435-9023063530d7",
+                "type": "MergeContact",
+                "$title": "Set formalizacao",
+                "$invalid": false,
+                "settings": {
+                    "extras": {
+                        "Fila": "Formalizacao"
+                    }
+                },
+                "conditions": []
+            }
+        ],
         "$inputSuggestions": [],
         "$defaultOutput": {
             "stateId": "fallback",
@@ -222,8 +230,8 @@
         },
         "id": "welcome",
         "$position": {
-            "top": "161px",
-            "left": "227px"
+            "top": "159px",
+            "left": "225px"
         },
         "$title": "1.0 - Boas vindas",
         "$invalidContentActions": false,
@@ -258,8 +266,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:4896"
+                "$invalid": false
             },
             {
                 "action": {
@@ -280,8 +287,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:4897"
+                "$invalid": false
             },
             {
                 "input": {
@@ -298,8 +304,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:4898"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [],
@@ -338,8 +343,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:5674"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -353,13 +357,11 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "isWorkTime",
-                        "$$hashKey": "object:5868"
+                        "variable": "isWorkTime"
                     }
                 ],
                 "$invalid": false,
-                "$id": "b7295a2c-0f47-4140-aea9-764c14745539",
-                "$$hashKey": "object:5846"
+                "$id": "b7295a2c-0f47-4140-aea9-764c14745539"
             },
             {
                 "stateId": "95118c04-1f32-40df-b1b0-54fb24fa2fc7",
@@ -371,13 +373,11 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "isWorkTime",
-                        "$$hashKey": "object:5895"
+                        "variable": "isWorkTime"
                     }
                 ],
                 "$invalid": false,
-                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056",
-                "$$hashKey": "object:5847"
+                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056"
             }
         ],
         "$enteringCustomActions": [
@@ -387,9 +387,9 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = parseInt(offset);\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n    \n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n",
+                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = parseInt(offset);\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n\n    const isHoliday = checkHoliday(attendanceTime.holidays, now);\n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay && !isHoliday;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n\nconst checkHoliday = (holidays, now) => {\n    let month = now.getMonth() < 10? `0${now.getMonth() + 1}`: now.getMonth() + 1;\n    let day = now.getDate() < 10 ? `0${now.getDate()}`: now.getDate(); \n    const today = `${day}/${month}/${now.getFullYear()}`;\n    return holidays.some(h => h == today);\n}",
                     "inputVariables": [
-                        "config.dateTimeOffset",
+                        "resource.dateTimeOffset",
                         "attendanceTimeObject"
                     ],
                     "outputVariable": "isWorkTime",
@@ -433,8 +433,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1414"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -448,13 +447,11 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "hasAttendant",
-                        "$$hashKey": "object:1608"
+                        "variable": "hasAttendant"
                     }
                 ],
                 "$invalid": false,
-                "$id": "e391e4ce-963b-4468-9645-ec123041451f",
-                "$$hashKey": "object:1586"
+                "$id": "e391e4ce-963b-4468-9645-ec123041451f"
             },
             {
                 "stateId": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
@@ -466,13 +463,11 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "hasAttendant",
-                        "$$hashKey": "object:1635"
+                        "variable": "hasAttendant"
                     }
                 ],
                 "$invalid": false,
-                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96",
-                "$$hashKey": "object:1587"
+                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96"
             }
         ],
         "$enteringCustomActions": [
@@ -512,8 +507,8 @@
         "root": false,
         "$title": "3.0 - Verifica Disponibilidade Atendentes",
         "$position": {
-            "top": "260px",
-            "left": "1078px"
+            "top": "246px",
+            "left": "1077px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
@@ -547,8 +542,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1889"
+                "$invalid": false
             },
             {
                 "action": {
@@ -570,8 +564,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1890"
+                "$invalid": false
             },
             {
                 "input": {
@@ -589,8 +582,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1891"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [],
@@ -616,8 +608,8 @@
         "root": false,
         "$title": "2.1 - Fora do Horário de Atendimento",
         "$position": {
-            "top": "368px",
-            "left": "892px"
+            "top": "370px",
+            "left": "894px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
@@ -757,7 +749,8 @@
                     "settings": {
                         "id": "90ec55b8-aadd-4f92-bf1a-dec84eb60244",
                         "type": "text/plain",
-                        "content": "Atendimento finalizado!"
+                        "content": "Atendimento finalizado!",
+                        "metadata": {}
                     },
                     "$cardContent": {
                         "document": {
@@ -938,7 +931,7 @@
         "root": false,
         "$title": "5.0 - Nota de atendimento",
         "$position": {
-            "top": "261px",
+            "top": "260px",
             "left": "1629px"
         },
         "$invalidContentActions": false,
@@ -973,8 +966,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:2280"
+                "$invalid": false
             },
             {
                 "action": {
@@ -995,8 +987,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:2281"
+                "$invalid": false
             },
             {
                 "input": {
@@ -1014,8 +1005,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:2282"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [],
@@ -1051,8 +1041,8 @@
         "root": false,
         "$title": "3.2 - Nenhum atendente disponível",
         "$position": {
-            "top": "386px",
-            "left": "1083px"
+            "top": "372px",
+            "left": "1078px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
@@ -1094,7 +1084,8 @@
                     "settings": {
                         "id": "04835382-935c-4372-8778-69b4b0912d60",
                         "type": "text/plain",
-                        "content": "A partir de agora um de nossos atendentes vai respondê-lo."
+                        "content": "A partir de agora um de nossos atendentes vai respondê-lo.",
+                        "metadata": {}
                     },
                     "$cardContent": {
                         "document": {
@@ -1142,7 +1133,8 @@
                     "settings": {
                         "id": "8f63c111-4933-4e07-a9be-574ca9d0fbda",
                         "type": "text/plain",
-                        "content": "Como podemos ajudá-lo?"
+                        "content": "Como podemos ajudá-lo?",
+                        "metadata": {}
                     },
                     "$cardContent": {
                         "document": {
@@ -1246,8 +1238,7 @@
                         "error": "Informe um tempo de inatividade"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1007"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -1259,12 +1250,10 @@
                     {
                         "source": "input",
                         "comparison": "exists",
-                        "values": [],
-                        "$$hashKey": "object:1198"
+                        "values": []
                     }
                 ],
-                "$invalid": false,
-                "$$hashKey": "object:1179"
+                "$invalid": false
             }
         ],
         "$enteringCustomActions": [
@@ -1308,17 +1297,31 @@
                 "conditions": []
             },
             {
+                "$id": "f5279d97-34ac-4828-bfed-4cb9e125a9d6",
+                "type": "ProcessCommand",
+                "$title": "get holidays",
+                "$invalid": false,
+                "settings": {
+                    "to": "postmaster@msging.net",
+                    "method": "get",
+                    "uri": "/resources/{{attendanceTimeObject@holidays}}",
+                    "variable": "holidays"
+                },
+                "conditions": []
+            },
+            {
                 "$id": "0f08c598-81bb-4adb-8dd6-41c39c95f790",
                 "type": "ExecuteScript",
                 "$title": "build attendanceObject",
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "/**\n            * All input variables needs to be passed as function param;\n            * Objects received as param needs to be parsed. Ex.: JSON.parse(inputVariable1);\n            * Objects returned needs to be stringfied. Ex.: JSON.stringify(inputVariable1);\n            **/\n\nconst getValue = (resourceResponse) => {\n    resourceResponse = JSON.parse(resourceResponse);\n    return resourceResponse.status == 'success' ? resourceResponse.resource : \"no_value\";\n}\n\n\nconst run = (starTime, endTime, days) => {\n    return {\n        start: getValue(starTime),\n        end: getValue(endTime),\n        days: getValue(days)\n    };\n}",
+                    "source": "/**\n            * All input variables needs to be passed as function param;\n            * Objects received as param needs to be parsed. Ex.: JSON.parse(inputVariable1);\n            * Objects returned needs to be stringfied. Ex.: JSON.stringify(inputVariable1);\n            **/\n\nconst getValue = (resourceResponse) => {\n    resourceResponse = JSON.parse(resourceResponse);\n    return resourceResponse.status == 'success' ? resourceResponse.resource : \"no_value\";\n}\n\n\nconst run = (starTime, endTime, days, holidays) => {\n    return {\n        start: getValue(starTime),\n        end: getValue(endTime),\n        days: getValue(days),\n        holidays: getValue(holidays).split(';')\n    };\n}",
                     "inputVariables": [
                         "openingTime",
                         "end",
-                        "days"
+                        "days",
+                        "holidays"
                     ],
                     "outputVariable": "attendanceTimeObject",
                     "LocalTimeZoneEnabled": false
@@ -1369,8 +1372,7 @@
                         "error": "Informe um tempo de inatividade"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:546"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -1382,12 +1384,10 @@
                     {
                         "source": "input",
                         "comparison": "exists",
-                        "values": [],
-                        "$$hashKey": "object:791"
+                        "values": []
                     }
                 ],
-                "$invalid": false,
-                "$$hashKey": "object:772"
+                "$invalid": false
             }
         ],
         "$enteringCustomActions": [
@@ -1424,7 +1424,7 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "const get_teams = (attendanceRules) => {\n    const teams = Array.from(new Set(attendanceRules.map(ar => ar.team.replace(/\\s/g, \"\"))));\n    if(teams != undefined){\n        const teamRegex = teams.reduce((tr, teamsRegex) => `${tr}|${teamsRegex.trim()}`);\n        return teamRegex;\n    }\n\n    return \"no_rules\";\n}\n\n\nconst run = (contact, attendanceRulesResponse) =>{\n    contact = JSON.parse(contact);\n    attendanceRulesResponse = JSON.parse(attendanceRulesResponse);\n    const attendanceRules = attendanceRulesResponse.status == 'success' ? attendanceRulesResponse.resource.items : [];\n    const queuePattern = new RegExp(\"queue|fila|equipe|team|time|atendente|attendant\", \"i\");\n    const queueKey = Object.keys(contact.extras).find(c => queuePattern.test(c));\n    const hasKey = queueKey != undefined;\n    return {\n        hasKey : hasKey,\n        value : hasKey ? contact.extras[queueKey] : \"\",\n        available: get_teams(attendanceRules)\n    };\n}",
+                    "source": "const get_teams = (attendanceRules) => {\n    if (attendanceRules.length == 0) return \"no_rules\";\n    const teams = Array.from(new Set(attendanceRules.map(ar => ar.team.replace(/\\s/g, \"\"))));\n    if(teams != undefined){\n        const teamRegex = teams.reduce((tr, teamsRegex) => `${tr}|${teamsRegex.trim()}`);\n        return teamRegex;\n    }\n\n    return \"no_rules\";\n}\n\n\nconst run = (contact, attendanceRulesResponse) =>{\n    contact = JSON.parse(contact);\n    attendanceRulesResponse = JSON.parse(attendanceRulesResponse);\n    const attendanceRules = attendanceRulesResponse.status == 'success' ? attendanceRulesResponse.resource.items : [];\n    const queuePattern = new RegExp(\"queue|fila|equipe|team|time|atendente|attendant\", \"i\");\n    const queueKey = contact.extras ? Object.keys(contact.extras).find(c => queuePattern.test(c)) : undefined;\n    const hasKey = queueKey != undefined;\n    return {\n        hasKey : hasKey,\n        value : hasKey ? contact.extras[queueKey] : \"\",\n        available: get_teams(attendanceRules)\n    };\n}",
                     "inputVariables": [
                         "contact.serialized",
                         "attendanceRules"
@@ -1441,7 +1441,7 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) => \n            day.test(dr) && \n            !teamsAvailablePattern.test(dr) && \n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
+                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst holiday_pattern = /holyday|feriado|folga|rest/i\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) => \n            day.test(dr) && \n            !teamsAvailablePattern.test(dr) && \n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    const holidays = getVariableNames(desk_resources, day, queue, holiday_pattern);\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n        holidays: holidays\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
                     "inputVariables": [
                         "resourceResponse",
                         "config.dateTimeOffset",
@@ -1465,7 +1465,7 @@
         "$title": "1.2 - Busca informações de atendimento",
         "$position": {
             "top": "265px",
-            "left": "526px"
+            "left": "523px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
