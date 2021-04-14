@@ -18,11 +18,11 @@ Dessa forma, **todo gerenciamento** é realizado unicamente no menu de recursos 
 
 Primeiro você deve importar o `template de atendimento` para **seu** bot de atendimento utilizando as opções `Configuração > Versões > Carregar fluxo` como mostra na imagem abaixo;
 
-![image](https://raw.githubusercontent.com/louisbaggins/BlipAttendanceTemplate/refactor-readme/.github/images/importar-template.png)
+![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/importar-template.png)
 
 Após a importação, o conteúdo do seu bot será **substituído** pelo conteúdo do bot do `template de atendimento` e você precisará publicar seu bot de atendimento para que a alteração seja replicada. Abaixo exemplo da importação;
  
-![image](https://raw.githubusercontent.com/louisbaggins/BlipAttendanceTemplate/refactor-readme/.github/images/publicar-fluxo.png)
+![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/publicar-fluxo.png)
 
 Pronto! Todas as demais configurações serão realizadas **somente** na tela de recurso e você não precisa se preocupar com nenhum desenvolvimento. Abaixo exemplo de como acessar a tela de recursos;
 
@@ -41,7 +41,7 @@ Pronto! Todas as demais configurações serão realizadas **somente** na tela de
 
 Em recurso, ao adicionar um novo recurso no botão `Adicionar novo` será solicitado 3 campos para preenchimento: `chave`, `tipo` e `conteúdo`. Para configurar o horário de atendimento, você deve criar o recurso para abertura e encerramento contendo os valores para horario de início e encerramento do horário da empresa, abaixo segue exemplo de horário de funcionamento das 10:00 às 22:00 horas e seus recursos cadastrados;
 
-![image](https://raw.githubusercontent.com/louisbaggins/BlipAttendanceTemplate/refactor-readme/.github/images/add-chave.png)  
+![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/add-chave.png)  
 
 **A configuração dos horários ficará no seguinte padrão:**
 
@@ -134,7 +134,7 @@ Neste campo, deverá ser cadastrado a diferença de horas com relação ao horá
 - Para que a busca pela equipe funcione de forma correta, é necessário que o nome da equipe de atendimento que foi cadastrado na chave do recurso seja exatamente igual ao nome da equipe cadastrado no Atendimento do bot. Isso para os recursos específicos por equipe. 
     - Alem disso, dentro do bot deve ser criado esta chave no bloco em `Ações > AÇÕES DE SAÍDA > Adicionar acção de saída > Definir contato + Adicionar atributo extra` e no campo `Key` o nome deverá ser um dos seguintes valores: Equipe, Time, Atendente ou Fila e o campo `Value` será o nome da equipe;
     
-    ![image](https://raw.githubusercontent.com/louisbaggins/BlipAttendanceTemplate/refactor-readme/.github/images/config-equipe.png)  
+    ![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/config-equipe.png)  
 
 - É necessário configurar as regras de atendimento para equipe criada, você pode conferir como configurar regra de atendimento nesse [link](https://help.blip.ai/hc/pt-br/articles/1500006317561-Como-definir-Regras-de-atendimento-com-uma-ou-m%C3%BAltiplas-condicionais);
 - Para que o template funcione da forma esperada, é necessário que todos os dados estejam respeitando os seguintes formatos:
@@ -142,3 +142,4 @@ Neste campo, deverá ser cadastrado a diferença de horas com relação ao horá
 |Data       | Hora  |
 |-----------|-------|
 |DD/MM/AAAA | HH:MM |
+
