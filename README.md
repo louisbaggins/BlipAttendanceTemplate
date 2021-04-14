@@ -8,6 +8,7 @@ Dessa forma, **todo gerenciamento** é realizado unicamente no menu de recursos 
 
 ## Sumário  
 
+- [Como funciona?](#como-funciona)
 - [Como configurar horário de atendimento](#como-configurar-horário-de-atendimento);
 - [Como configurar os dias de funcionamento](#como-configurar-os-dias-de-funcionamento)
 - [Como configurar os feriados:](#como-configurar-os-feriados);
@@ -26,7 +27,7 @@ Após a importação, o conteúdo do seu bot será **substituído** pelo conteú
 
 Pronto! Todas as demais configurações serão realizadas **somente** na tela de recurso e você não precisa se preocupar com nenhum desenvolvimento. Abaixo exemplo de como acessar a tela de recursos;
 
-![image](https://user-images.githubusercontent.com/44960191/112885419-1ddea200-90a7-11eb-8e4c-00c875a29d82.png)  
+![image](https://user-images.githubusercontent.com/44960191/114769721-f3484680-9d40-11eb-9c4b-c674f15aec8a.png)  
 
 **Na tela de recursos, será possível de configurar:**
 
@@ -39,75 +40,86 @@ Pronto! Todas as demais configurações serão realizadas **somente** na tela de
 
 ## Como configurar horário de atendimento
 
-Em recurso, ao adicionar um novo recurso no botão `Adicionar novo` será solicitado 3 campos para preenchimento: `chave`, `tipo` e `conteúdo`. Para configurar o horário de atendimento, você deve criar o recurso para abertura e encerramento contendo os valores para horario de início e encerramento do horário da empresa, abaixo segue exemplo de horário de funcionamento das 10:00 às 22:00 horas e seus recursos cadastrados;
+Em recurso, ao adicionar um novo recurso no botão `Adicionar novo` será solicitado 3 campos para preenchimento: `chave`, `tipo` e `conteúdo`. 
 
-![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/add-chave.png)  
+![image](https://user-images.githubusercontent.com/44960191/114771096-8f268200-9d42-11eb-934a-778ee95826ef.png)
+
+Para configurar o horário de atendimento será necessário criar uma configuração para abertura e uma configuração para fechamento contendo os valores para horario de início e fechamento, respectivamente. Veja abaixo:
+
+![image](https://user-images.githubusercontent.com/44960191/114769840-196de680-9d41-11eb-8d0e-7f0bac46a5a0.png)  
+
+
+## Como funciona a Chave de configuração de horário de atendimento?
+
+![image](https://user-images.githubusercontent.com/44960191/114775700-f98df100-9d47-11eb-81f9-2543e563d5e0.png)
+
+A chave é composta por 4 partes que permitem ao bot entender como proceder com o horário de atendimento:
+
+- Prefixo;
+- Time ou fila;
+- Dia da semana;
+- Abertura ou fechamento;
+
+![image](https://user-images.githubusercontent.com/44960191/114776015-5b4e5b00-9d48-11eb-978c-ae4de3ed9bd3.png)
+
+- Você pode usar Todos para se referir aos times ou filas de atendimento;
+
+- Você pode usar Todos para se referir aos dias da semana também, incluindo sábado e domingo;
+
+- Se quiser definir um horário base para todos os times e todos os dias basta configurar:
+    - `desk-todos-todos-abertura`;
+    - `desk-todos-todos-fechamento`; 
 
 **A configuração dos horários ficará no seguinte padrão:**
 
+
+
 | **Chave**               | **Tipo** | **Conteudo** |
 |-------------------------|----------|--------------|
-| desk-HorarioAbertura    | Texto    |  10:00       |
-| desk-HorarioFechamento  | Texto    |  22:00       |
+| desk-todos-todos-abertura    | Texto    |  10:00       |
+| desk-todos-todos-fechamento  | Texto    |  22:00       |
 
-Todos os campos `chave` referente a configuração de horário de atendimento <b>devem</b> ser cadastradas com o prefixo "desk-", além disso, devem ter um indicativo se o valor é vinculado ao horário de abertura ou fechamento, como no exemplo demostrado:
+![image](https://user-images.githubusercontent.com/44960191/114784721-0283c000-9d52-11eb-9b27-46f52ae99580.png)
 
-- Exemplo de variável para horário de abertura - desk-HorarioAbertura;
-- Exemplo de variável para horário de fechamento - desk-HorarioFechamento;
-
-### Configuração de horário de atendimento por equipe
-
-Para configurar o horário de atendimento para equipes de atendimento, basta inserir o nome da equipe na chave do recurso, seguindo as mesmas regras apresentadas anteriormente, por exemplo:
-
-Para uma equipe chamada `Treinamento`, poderíamos configurar as chaves da seguinte forma:
-
-- Abertura - desk-HorarioAberturaTreinamento;
-- Fechamento - desk-HorarioFechamentoTreinamento;
-- Dias de Funcionamento - desk-DiasFuncionamentoTreinamento;
-
-> *Note que o nome da equipe é inserido ao final da chave*.
-
-### Configuração de horário de atendimento por dia da semana
-
-Além de configurar o horário de atendimento por equipe, é possível configurar também um horário para um dia da semana **específico**, por exemplo, digamos que somente aos sábados a empresa terá um horário de funcionamento diferenciado das 8:00 às 12:00 horas. Neste caso, podemos configurar da seguinte forma - seguindo as mesmas regras apresentadas anteriormente:
-
-- Abertura - desk-HorarioAberturaSabado;
-- Fechamento - desk-HorarioFechamentoSabado;
-
-> *Note que o nome do dia da semana é inserido ao final da chave*.
-
-Além disso, todas as regras citadas são cumulativas, portanto, podemos também configurar horário de atendimento específico para dia da semana e equipe:
-- Abertura - desk-HorarioAberturaTreinamentoQuinta
-- Fechamento - desk-HorarioFechamentoTreinamentoQuinta
-
-Caso seja necessário configurar **horários exclusivos** para outros dias da semana, seguimos o mesmo padrão para os demais dias.
+- Configuração de abertura para todas as equipes - desk-todos-todos-abertura;
+- Configuração de abertura apenas para a equipe Treinamento - desk-Treinamento-todos-abertura;
 
 ## Como configurar os dias de funcionamento
 
-A configuração dos **dias de atendimento** segue o mesmo padrão das configuração das chaves para horário de atendimento, portanto, é possível configurar chaves de atendimento para todas as equipes (padrão) ou para uma equipe específica, segue exemplo:
+![image](https://user-images.githubusercontent.com/44960191/114786494-948cc800-9d54-11eb-9602-c85703c58dd0.png)
 
-- Dias de funcionamento para equipes sem configuração específica (equipes padrão - Default) - **desk-DiasFuncionamento**
-- Dias de funcionamento para equipe específica `Treinamento` - **desk-DiasFuncionamentoTreinamento** 
+- Para configurar os dias, basta indicar o time/fila e, no lugar do dia da semana, indicar "dias"
+- Você pode usar Todos para se referir aos times ou filas de atendimento;
+- Não precisa colocar abertura/fechamento.
+- Ao invés de informar hora, precisa informar os dias de funcionamento, onde temos a seguinte relação:
 
-**A configuração dos dias de funcionamento seguirá o seguinte padrão:**
-
-|**Chave**                  | **Tipo**  | **Conteúdo**  |
-|-----------------------|-------|-----------|
-|desk-DiasFuncionamento | Texto | 1,2,3,4,5,6 |
-
-**Onde em conteúdo temos a relação:**
 |0      |      1|    2|     3|     4|    5|     6|
 |-------|-------|-----|------|------|-----|------|
 |Domingo|Segunda|Terça|Quarta|Quinta|Sexta|Sábado|
 
-**No exemplo acima, os dias de funcionamento de atendimento da empresa seguem de segunda à sabado.**
+A configuração dos **dias de atendimento** segue o mesmo padrão das configuração das chaves para horário de atendimento, portanto, é possível configurar chaves de atendimento para todas as equipes (padrão) ou para uma equipe específica.
+
+|**Chave**                  | **Tipo**  | **Conteúdo**  |
+|-----------------------|-------|-----------|
+|desk-todos-dias | Texto | 1,2,3,4,5,6 |
+
+**No exemplo acima, a empresa funciona de segunda à sábado**
+
+- Configuração de dias de funcionamento para todas as equipes - desk-todos-dias;
+- Configuração de abertura apenas para a equipe Treinamento - desk-Treinamento-dias;
 
 ## Como configurar os feriados:
 
-Para configurar feriados, podemos seguir o padrão já estabelecido para as chaves referentes ao horário de atendimento e dias de funcionamento. Portanto, é possível cadastrar feriado para todas as equipes de treinamento (padrão - Default), ou apenas para as equipes desejadas, ex:
+![image](https://user-images.githubusercontent.com/44960191/114787036-7b384b80-9d55-11eb-8e78-5ced808a9133.png)
 
-- Feriado para todas as equipes - desk-Feriados;
-- Feriado apenas para a equipe Treinamento - desk-FeriadosTreinamento;
+- Para configurar Feriados, basta indicar o time/fila e, no lugar do dia da semana, indicar "feriados"
+- Não precisa colocar abertura/fechamento.
+- Ao invés de informar hora, precisa informar a data no formato "dd/mm/aaaa"
+- Caso tenha mais de um feriado, pode-se colocar todas as datas separadas por ponto-e-vírgula (;). O bot irá conferir a lista de datas informada.
+
+
+- Feriado para todas as equipes - desk-todos-feriados;
+- Feriado apenas para a equipe Treinamento - desk-treinamento-feriados;
 
 **As datas deverão ser incluídas no seguinte padrão:**
 
