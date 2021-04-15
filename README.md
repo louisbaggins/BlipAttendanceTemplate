@@ -37,7 +37,7 @@ Criando uma nova configuração na tela de recursos no botão `Adicionar novo`. 
 
 Para configurar o horário de atendimento será necessário criar uma configuração para abertura e uma configuração para fechamento contendo os valores para horario de início e fechamento, respectivamente. Veja abaixo:
 
-![image](https://user-images.githubusercontent.com/44960191/112885419-1ddea200-90a7-11eb-8e4c-00c875a29d82.png)  
+![image](https://user-images.githubusercontent.com/44960191/114878341-897a7c00-9dd6-11eb-8c43-06163a6136a7.png)
 
 
 ## Como funciona a Chave de configuração de horário de atendimento?
