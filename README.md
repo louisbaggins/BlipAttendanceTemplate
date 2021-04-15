@@ -59,7 +59,7 @@ A chave é composta por 4 partes que permitem ao bot entender como proceder com 
     - `desk-todos-todos-abertura`;
     - `desk-todos-todos-fechamento`; 
 
-**A configuração dos horários ficará no seguinte padrão:**
+**Você poderia configurar o horário de todos os times em todos os dias da semana assim:**
 
 
 | **Chave**               | **Tipo** | **Conteudo** |
@@ -72,7 +72,7 @@ A chave é composta por 4 partes que permitem ao bot entender como proceder com 
 
 ## Como configurar os dias de funcionamento
 
-![image](https://user-images.githubusercontent.com/44960191/114786494-948cc800-9d54-11eb-9602-c85703c58dd0.png)
+![image](https://user-images.githubusercontent.com/44960191/114930821-d62c7a00-9e0b-11eb-968e-73c988befef2.png)
 
 - Para configurar os dias, basta indicar o time/fila e, no lugar do dia da semana, indicar "dias"
 - Você pode usar Todos para se referir a todos times ou filas de atendimento;
