@@ -40,7 +40,7 @@ Pronto! Todas as demais configurações serão realizadas **somente** na tela de
 
 ## Como configurar horário de atendimento
 
-Em recurso, ao adicionar um novo recurso no botão `Adicionar novo` será solicitado 3 campos para preenchimento: `chave`, `tipo` e `conteúdo`. 
+Criando uma nova configuração na tela de recursos no botão `Adicionar novo`. Será necessário o preenchimento de 3 campos: `chave`, `tipo` e `conteúdo`. 
 
 ![image](https://user-images.githubusercontent.com/44960191/114771096-8f268200-9d42-11eb-934a-778ee95826ef.png)
 
@@ -121,7 +121,7 @@ Ex:
 
 | **Chave**    | **Valor**            |
 |--------------|----------------------|
-|desk-Feriados | 12/10/2022;25/12/2022|    
+|desk-todos-feriados | 12/10/2022;25/12/2022|    
 
 > *Cada data deve ser separada por ';' e não existem limites de datas cadastradas!*
 
@@ -140,9 +140,12 @@ Neste campo, deverá ser cadastrado a diferença de horas com relação ao horá
 
 - Ao cadastrar as chaves no recurso, evite usar caracteres especiais, como acentos ou 'ç';
 - Para que a busca pela equipe funcione de forma correta, é necessário que o nome da equipe de atendimento que foi cadastrado na chave do recurso seja exatamente igual ao nome da equipe cadastrado no Atendimento do bot. Isso para os recursos específicos por equipe. 
-    - Alem disso, dentro do bot deve ser criado esta chave no bloco em `Ações > AÇÕES DE SAÍDA > Adicionar acção de saída > Definir contato + Adicionar atributo extra` e no campo `Key` o nome deverá ser um dos seguintes valores: Equipe, Time, Atendente ou Fila e o campo `Value` será o nome da equipe;
+    - Alem disso, dentro do bot deve ser criado esta chave no bloco em `Ações > AÇÕES DE SAÍDA > Adicionar ação de saída > Definir contato + Adicionar atributo extra` e no campo `Key` o nome deverá ser `Equipe` e o campo `Value` será o nome da equipe;
     
-    ![image](https://raw.githubusercontent.com/leisiamedeiros/BlipAttendanceTemplate/master/.github/images/config-equipe.png)  
+    ![image](https://user-images.githubusercontent.com/44960191/114875205-71edc400-9dd3-11eb-9eac-05a93e894142.png)
+
+    ![image](https://user-images.githubusercontent.com/44960191/114875757-01937280-9dd4-11eb-9205-125123c072da.png)
+ 
 
 - É necessário configurar as regras de atendimento para equipe criada, você pode conferir como configurar regra de atendimento nesse [link](https://help.blip.ai/hc/pt-br/articles/1500006317561-Como-definir-Regras-de-atendimento-com-uma-ou-m%C3%BAltiplas-condicionais);
 - Para que o template funcione da forma esperada, é necessário que todos os dados estejam respeitando os seguintes formatos:
