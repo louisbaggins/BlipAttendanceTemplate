@@ -138,7 +138,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5170"
             },
             {
                 "action": {
@@ -159,7 +160,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5171"
             },
             {
                 "input": {
@@ -176,7 +178,8 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5172"
             }
         ],
         "$conditionOutputs": [
@@ -189,11 +192,13 @@
                         "comparison": "matches",
                         "values": [
                             ".*"
-                        ]
+                        ],
+                        "$$hashKey": "object:5381"
                     }
                 ],
                 "$invalid": false,
-                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e"
+                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e",
+                "$$hashKey": "object:5362"
             }
         ],
         "$enteringCustomActions": [
@@ -209,20 +214,7 @@
                 "conditions": []
             }
         ],
-        "$leavingCustomActions": [
-            {
-                "$id": "4ece2796-96cd-4179-b435-9023063530d7",
-                "type": "MergeContact",
-                "$title": "Set formalizacao",
-                "$invalid": false,
-                "settings": {
-                    "extras": {
-                        "Fila": "Formalizacao"
-                    }
-                },
-                "conditions": []
-            }
-        ],
+        "$leavingCustomActions": [],
         "$inputSuggestions": [],
         "$defaultOutput": {
             "stateId": "fallback",
@@ -343,7 +335,8 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:1019"
             }
         ],
         "$conditionOutputs": [
@@ -357,11 +350,13 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "isWorkTime"
+                        "variable": "isWorkTime",
+                        "$$hashKey": "object:1213"
                     }
                 ],
                 "$invalid": false,
-                "$id": "b7295a2c-0f47-4140-aea9-764c14745539"
+                "$id": "b7295a2c-0f47-4140-aea9-764c14745539",
+                "$$hashKey": "object:1191"
             },
             {
                 "stateId": "95118c04-1f32-40df-b1b0-54fb24fa2fc7",
@@ -373,11 +368,13 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "isWorkTime"
+                        "variable": "isWorkTime",
+                        "$$hashKey": "object:1240"
                     }
                 ],
                 "$invalid": false,
-                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056"
+                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056",
+                "$$hashKey": "object:1192"
             }
         ],
         "$enteringCustomActions": [
@@ -387,7 +384,7 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = parseInt(offset);\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n\n    const isHoliday = checkHoliday(attendanceTime.holidays, now);\n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay && !isHoliday;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n\nconst checkHoliday = (holidays, now) => {\n    let month = now.getMonth() < 10? `0${now.getMonth() + 1}`: now.getMonth() + 1;\n    let day = now.getDate() < 10 ? `0${now.getDate()}`: now.getDate(); \n    const today = `${day}/${month}/${now.getFullYear()}`;\n    return holidays.some(h => h == today);\n}",
+                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = offset ? parseInt(offset) : 0;\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n\n    const isHoliday = checkHoliday(attendanceTime.holidays, now);\n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay && !isHoliday;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n\nconst checkHoliday = (holidays, now) => {\n    let month = now.getMonth() < 10? `0${now.getMonth() + 1}`: now.getMonth() + 1;\n    let day = now.getDate() < 10 ? `0${now.getDate()}`: now.getDate(); \n    const today = `${day}/${month}/${now.getFullYear()}`;\n    return holidays.some(h => h == today);\n}",
                     "inputVariables": [
                         "resource.dateTimeOffset",
                         "attendanceTimeObject"
@@ -433,7 +430,8 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:1488"
             }
         ],
         "$conditionOutputs": [
@@ -447,11 +445,13 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "hasAttendant"
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1682"
                     }
                 ],
                 "$invalid": false,
-                "$id": "e391e4ce-963b-4468-9645-ec123041451f"
+                "$id": "e391e4ce-963b-4468-9645-ec123041451f",
+                "$$hashKey": "object:1660"
             },
             {
                 "stateId": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
@@ -463,11 +463,13 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "hasAttendant"
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1709"
                     }
                 ],
                 "$invalid": false,
-                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96"
+                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96",
+                "$$hashKey": "object:1661"
             }
         ],
         "$enteringCustomActions": [
@@ -480,7 +482,8 @@
                     "method": "get",
                     "uri": "/attendants",
                     "variable": "result"
-                }
+                },
+                "conditions": []
             },
             {
                 "type": "ExecuteScript",
@@ -494,7 +497,8 @@
                     ],
                     "outputVariable": "hasAttendant",
                     "LocalTimeZoneEnabled": false
-                }
+                },
+                "conditions": []
             }
         ],
         "$leavingCustomActions": [],
@@ -1238,7 +1242,8 @@
                         "error": "Informe um tempo de inatividade"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:3072"
             }
         ],
         "$conditionOutputs": [
@@ -1250,10 +1255,12 @@
                     {
                         "source": "input",
                         "comparison": "exists",
-                        "values": []
+                        "values": [],
+                        "$$hashKey": "object:3263"
                     }
                 ],
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:3244"
             }
         ],
         "$enteringCustomActions": [
@@ -1372,7 +1379,8 @@
                         "error": "Informe um tempo de inatividade"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:612"
             }
         ],
         "$conditionOutputs": [
@@ -1384,10 +1392,12 @@
                     {
                         "source": "input",
                         "comparison": "exists",
-                        "values": []
+                        "values": [],
+                        "$$hashKey": "object:803"
                     }
                 ],
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:784"
             }
         ],
         "$enteringCustomActions": [
@@ -1441,10 +1451,10 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst holiday_pattern = /holyday|feriado|folga|rest/i\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) => \n            day.test(dr) && \n            !teamsAvailablePattern.test(dr) && \n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    const holidays = getVariableNames(desk_resources, day, queue, holiday_pattern);\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n        holidays: holidays\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
+                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst holiday_pattern = /holyday|feriado|folga|rest/i\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) =>\n            day.test(dr) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    const holidays = getVariableNames(desk_resources, day, queue, holiday_pattern);\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n        holidays: holidays\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n\n    offset = offset ? offset : 0;\n    if (resources.status != 'success') {\n        return {\n            start: 'no_resource',\n            end: 'no_resource',\n            days: 'no_resource',\n            holidays: 'no_resource'\n        };\n    \n    }\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
                     "inputVariables": [
                         "resourceResponse",
-                        "config.dateTimeOffset",
+                        "resource.dateTimeOffset",
                         "contactQueue"
                     ],
                     "outputVariable": "attendanceTimeObject",
