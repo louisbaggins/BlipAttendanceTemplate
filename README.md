@@ -29,15 +29,6 @@ Pronto! Todas as demais configurações serão realizadas **somente** na tela de
 
 ![image](https://user-images.githubusercontent.com/44960191/114769721-f3484680-9d40-11eb-9c4b-c674f15aec8a.png)  
 
-**Na tela de recursos, será possível de configurar:**
-
-- Horário de atendimento;
-    - horário de atendimento por equipe;
-    - horário de atendimento por dia da semana;
-- Dias de funcionamento;
-- Feriados;
-- Fuso-horário;
-
 ## Como configurar horário de atendimento
 
 Criando uma nova configuração na tela de recursos no botão `Adicionar novo`. Será necessário o preenchimento de 3 campos: `chave`, `tipo` e `conteúdo`. 
@@ -114,6 +105,7 @@ A configuração dos **dias de atendimento** segue o mesmo padrão das configura
 - Caso tenha mais de um feriado, pode-se colocar todas as datas separadas por ponto-e-vírgula (;). O bot irá conferir a lista de datas informada.
 
 Ex:
+
 - Feriado para todas as equipes - desk-todos-feriados;
 - Feriado apenas para a equipe Treinamento - desk-treinamento-feriados;
 
