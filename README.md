@@ -54,7 +54,7 @@ A chave é composta por 4 partes que permitem ao bot entender como proceder com 
 
 ### Veja como fazer uma configuração geral com a palavra TODOS
 
-![image](https://user-images.githubusercontent.com/44960191/114776015-5b4e5b00-9d48-11eb-978c-ae4de3ed9bd3.png)
+![image](https://user-images.githubusercontent.com/44960191/114932435-e2b1d200-9e0d-11eb-9cc4-ecf8c92838e9.png)
 
 - Você pode usar Todos para se referir aos times ou filas de atendimento;
 - Você pode usar Todos para se referir aos dias da semana também, incluindo sábado e domingo;
