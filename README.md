@@ -37,6 +37,7 @@ Criando uma nova configuração na tela de recursos no botão `Adicionar novo`. 
 
 Para configurar o horário de atendimento será necessário criar uma configuração para abertura e uma configuração para fechamento contendo os valores para horario de início e fechamento, respectivamente. Veja abaixo:
 
+
 ![image](https://user-images.githubusercontent.com/44960191/114878341-897a7c00-9dd6-11eb-8c43-06163a6136a7.png)
 
 
@@ -50,6 +51,8 @@ A chave é composta por 4 partes que permitem ao bot entender como proceder com 
 - Time ou fila;
 - Dia da semana;
 - Abertura ou fechamento;
+
+### Veja como fazer uma configuração geral com a palavra TODOS
 
 ![image](https://user-images.githubusercontent.com/44960191/114776015-5b4e5b00-9d48-11eb-978c-ae4de3ed9bd3.png)
 
