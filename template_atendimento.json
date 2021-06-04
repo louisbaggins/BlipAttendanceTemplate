@@ -138,8 +138,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:5170"
+                "$invalid": false
             },
             {
                 "action": {
@@ -160,8 +159,7 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:5171"
+                "$invalid": false
             },
             {
                 "input": {
@@ -178,8 +176,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:5172"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -192,13 +189,11 @@
                         "comparison": "matches",
                         "values": [
                             ".*"
-                        ],
-                        "$$hashKey": "object:5381"
+                        ]
                     }
                 ],
                 "$invalid": false,
-                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e",
-                "$$hashKey": "object:5362"
+                "$id": "24d1772e-3d48-4896-875e-b8e8df0a6c6e"
             }
         ],
         "$enteringCustomActions": [
@@ -335,8 +330,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1019"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -350,13 +344,11 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "isWorkTime",
-                        "$$hashKey": "object:1213"
+                        "variable": "isWorkTime"
                     }
                 ],
                 "$invalid": false,
-                "$id": "b7295a2c-0f47-4140-aea9-764c14745539",
-                "$$hashKey": "object:1191"
+                "$id": "b7295a2c-0f47-4140-aea9-764c14745539"
             },
             {
                 "stateId": "95118c04-1f32-40df-b1b0-54fb24fa2fc7",
@@ -368,13 +360,11 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "isWorkTime",
-                        "$$hashKey": "object:1240"
+                        "variable": "isWorkTime"
                     }
                 ],
                 "$invalid": false,
-                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056",
-                "$$hashKey": "object:1192"
+                "$id": "5d9c99ab-e56e-4d92-891a-ae094c1a6056"
             }
         ],
         "$enteringCustomActions": [
@@ -384,7 +374,7 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = offset ? parseInt(offset) : 0;\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n\n    const isHoliday = checkHoliday(attendanceTime.holidays, now);\n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay && !isHoliday;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n\nconst checkHoliday = (holidays, now) => {\n    let month = now.getMonth() < 10? `0${now.getMonth() + 1}`: now.getMonth() + 1;\n    let day = now.getDate() < 10 ? `0${now.getDate()}`: now.getDate(); \n    const today = `${day}/${month}/${now.getFullYear()}`;\n    return holidays.some(h => h == today);\n}",
+                    "source": "// Receive the variables as parameters\nconst run = (offset, attendanceTime) => {\n    attendanceTime = JSON.parse(attendanceTime);\n    offset = parseInt(offset);\n    if(attendanceTime.start == 'no_value' && attendanceTime.end == 'no_value') return true;\n    let now = nowUTC(offset);\n    let startDate = utcDate(attendanceTime.start, now);\n    let endDate = utcDate(attendanceTime.end, now);\n\n    const isHoliday = checkHoliday(attendanceTime.holidays, now);\n    const hasWorkDay = attendanceTime.days != 'no_value' ? isWorkDay(now, attendanceTime.days) : true;\n    return ((now - startDate) > 0) && ((endDate - now) > 0) && hasWorkDay && !isHoliday;\n}\n\n//Get now UTC Date\nconst nowUTC = (offset) => {\n    let now = new Date;\n    let utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),\n        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());\n\n    return new Date(utc_timestamp + offset * 3600 * 1000);\n}\n\n//Get UTC Date\nconst utcDate = (timeString, today) => {\n    let now = new Date;\n\n    let hour = getValueByString('hour', timeString);\n    let minutes = getValueByString('minutes', timeString);\n    let utc_timestamp = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(),\n        hour, minutes, 0, 0);\n    return new Date(utc_timestamp);\n}\n\n//Get hour/minute by string with pattern HH:mm\nconst getValueByString = (type, timeString) => {\n\n    if (type === 'hour') {\n        return parseInt(timeString.substring(0, timeString.indexOf(':')));\n    }\n\n    else if (type === 'minutes') {\n        return parseInt(timeString.substring(timeString.indexOf(':') + 1, timeString.length));\n    }\n\n    return 0;\n}\n\n//Get if today is a work day\nconst isWorkDay = (today, workDays) => {\n    workDays = workDays.split(',');\n\n    return workDays.indexOf(today.getDay().toString()) >= 0;\n}\n\nconst checkHoliday = (holidays, now) => {\n    let month = now.getMonth() < 10? `0${now.getMonth() + 1}`: now.getMonth() + 1;\n    let day = now.getDate() < 10 ? `0${now.getDate()}`: now.getDate(); \n    const today = `${day}/${month}/${now.getFullYear()}`;\n    return holidays.some(h => h == today);\n}",
                     "inputVariables": [
                         "resource.dateTimeOffset",
                         "attendanceTimeObject"
@@ -406,7 +396,7 @@
         "$title": "2.0 - Verifica Horário Atendimento",
         "$position": {
             "top": "263px",
-            "left": "894px"
+            "left": "893px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
@@ -430,8 +420,7 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false,
-                "$$hashKey": "object:1488"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
@@ -445,13 +434,11 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "hasAttendant",
-                        "$$hashKey": "object:1682"
+                        "variable": "hasAttendant"
                     }
                 ],
                 "$invalid": false,
-                "$id": "e391e4ce-963b-4468-9645-ec123041451f",
-                "$$hashKey": "object:1660"
+                "$id": "e391e4ce-963b-4468-9645-ec123041451f"
             },
             {
                 "stateId": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
@@ -463,13 +450,11 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "hasAttendant",
-                        "$$hashKey": "object:1709"
+                        "variable": "hasAttendant"
                     }
                 ],
                 "$invalid": false,
-                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96",
-                "$$hashKey": "object:1661"
+                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96"
             }
         ],
         "$enteringCustomActions": [
@@ -497,8 +482,7 @@
                     ],
                     "outputVariable": "hasAttendant",
                     "LocalTimeZoneEnabled": false
-                },
-                "conditions": []
+                }
             }
         ],
         "$leavingCustomActions": [],
@@ -900,7 +884,20 @@
             }
         ],
         "$conditionOutputs": [],
-        "$enteringCustomActions": [],
+        "$enteringCustomActions": [
+            {
+                "$id": "a28f3919-8ad0-4f52-82d4-04fabc8395c8",
+                "type": "TrackEvent",
+                "$title": "ST survey question",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "ST survey question",
+                    "action": "NPS Human"
+                },
+                "conditions": []
+            }
+        ],
         "$leavingCustomActions": [
             {
                 "type": "ExecuteScript",
@@ -908,12 +905,13 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "// Receive the variables as parameters\nfunction run(score) {\n    if(isNumeric(score)){\n       score = parseInt(score);\n       if(score < 0) return 0;\n       if(score > 10) return 10;\n       return score;\n    }\n    return \"Outro\";\n}\n\n//check if a string has a number\nfunction isNumeric(num){\n  return !isNaN(num)\n}",
+                    "source": "const run = (score) => {\n    if(isNumeric(score)){\n       score = parseInt(score);\n       if(score < 0) return 0;\n       if(score > 10) return 10;\n       return score;\n    }    \n    return parseTextScoreToNumber(score);\n}\n\n//check if a string has a number\nconst isNumeric = (num) => {\n  return !isNaN(num);\n}\n\nconst verifyTextScore = (score) => {\n    let expression = /^(?:zero|um|dois|tres|quatro|cinco|seis|sete|oito|nove|dez)$/;  \n    const result = score.match(expression);\n    return result ? result[0] : \"Input inesperado\";\n}\n\nconst parseTextScoreToNumber = (score) => {\n    const textScore = verifyTextScore(score);\n    switch (textScore) {\n        case 'zero':\n            return 0;\n        case 'um':\n            return 1;\n        case 'dois':\n            return 2;\n        case 'tres':\n            return 3;\n        case 'quatro':\n            return 4;\n        case 'cinco':\n            return 5;\n        case 'seis':\n            return 6;\n        case 'sete':\n            return 7;\n        case 'oito':\n            return 8;\n        case 'nove':\n            return 9;\n        case 'dez':\n            return 10;\n        default:\n            return textScore;\n  }\n}",
                     "inputVariables": [
                         "score"
                     ],
                     "outputVariable": "score"
-                }
+                },
+                "conditions": []
             },
             {
                 "type": "TrackEvent",
@@ -924,6 +922,42 @@
                     "category": "Score",
                     "action": "{{score}}"
                 }
+            },
+            {
+                "$id": "dccbe722-81a9-4871-a5e7-7cb01573cbe5",
+                "type": "ExecuteScript",
+                "$title": "get score category",
+                "$invalid": false,
+                "settings": {
+                    "function": "run",
+                    "source": "const run = (score) => {\n    if (score == 'Input inesperado'){\n        return score;\n    }\n\n    if(score <= 6){\n        return 'Detractors';\n    }\n    else if(score > 6 && score < 9){\n        return 'Passive';\n    }\n    \n    return 'Promoters';\n}",
+                    "inputVariables": [
+                        "score"
+                    ],
+                    "outputVariable": "npsCategory"
+                },
+                "conditions": []
+            },
+            {
+                "$id": "856d4037-dcce-45ac-ba0a-9f4504beea6e",
+                "type": "TrackEvent",
+                "$title": "ST survey answer",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "ST survey answer",
+                    "action": "NPS Bot|{{npsCategory}}"
+                },
+                "conditions": [
+                    {
+                        "source": "context",
+                        "comparison": "notEquals",
+                        "variable": "npsCategory",
+                        "values": [
+                            "Input inesperado"
+                        ]
+                    }
+                ]
             }
         ],
         "$inputSuggestions": [],
@@ -1243,7 +1277,7 @@
                     }
                 },
                 "$invalid": false,
-                "$$hashKey": "object:3072"
+                "$$hashKey": "object:14208"
             }
         ],
         "$conditionOutputs": [
@@ -1256,11 +1290,11 @@
                         "source": "input",
                         "comparison": "exists",
                         "values": [],
-                        "$$hashKey": "object:3263"
+                        "$$hashKey": "object:14399"
                     }
                 ],
                 "$invalid": false,
-                "$$hashKey": "object:3244"
+                "$$hashKey": "object:14380"
             }
         ],
         "$enteringCustomActions": [
@@ -1380,7 +1414,7 @@
                     }
                 },
                 "$invalid": false,
-                "$$hashKey": "object:612"
+                "$$hashKey": "object:14623"
             }
         ],
         "$conditionOutputs": [
@@ -1393,11 +1427,11 @@
                         "source": "input",
                         "comparison": "exists",
                         "values": [],
-                        "$$hashKey": "object:803"
+                        "$$hashKey": "object:14814"
                     }
                 ],
                 "$invalid": false,
-                "$$hashKey": "object:784"
+                "$$hashKey": "object:14795"
             }
         ],
         "$enteringCustomActions": [
