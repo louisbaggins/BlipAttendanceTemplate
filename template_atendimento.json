@@ -420,7 +420,8 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:1694"
             }
         ],
         "$conditionOutputs": [
@@ -434,11 +435,13 @@
                         "values": [
                             "false"
                         ],
-                        "variable": "hasAttendant"
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1888"
                     }
                 ],
                 "$invalid": false,
-                "$id": "e391e4ce-963b-4468-9645-ec123041451f"
+                "$id": "e391e4ce-963b-4468-9645-ec123041451f",
+                "$$hashKey": "object:1866"
             },
             {
                 "stateId": "4c0d9be0-bd3d-4e72-b105-a2ac741e5149",
@@ -450,11 +453,13 @@
                         "values": [
                             "true"
                         ],
-                        "variable": "hasAttendant"
+                        "variable": "hasAttendant",
+                        "$$hashKey": "object:1915"
                     }
                 ],
                 "$invalid": false,
-                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96"
+                "$id": "6dc89263-c4f7-4665-b13c-00ad94cdea96",
+                "$$hashKey": "object:1867"
             }
         ],
         "$enteringCustomActions": [
@@ -476,13 +481,15 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "// Receive the variables as parameters\nfunction run(result) {\n    result = JSON.parse(result);\n    \n    let hasAttendant = false;\n\n    if(result.resource && result.resource.total >= 1){\n        hasAttendant  = result.resource.items.some(function(attendant){\n            return attendant.status === 'Online';\n        });\n    }\n    return hasAttendant;\n}",
+                    "source": "// Receive the variables as parameters\nconst run = (result, contactQueue) => {\n    result = JSON.parse(result);\n    contactQueue = JSON.parse(contactQueue);\n\n    let hasAttendant = false;\n    if (contactQueue.hasKey && result.resource && result.resource.total >= 1) {\n        hasAttendant = result.resource.items.some(function (attendant) {\n            return attendant.status === 'Online' && (attendant.teams.indexOf(contactQueue.value) >= 0);\n        });\n    }\n    else if (result.resource && result.resource.total >= 1) {\n        hasAttendant = result.resource.items.some(function (attendant) {\n            return attendant.status === 'Online';\n        });\n    }\n    return hasAttendant;\n}",
                     "inputVariables": [
-                        "result"
+                        "result",
+                        "contactQueue"
                     ],
                     "outputVariable": "hasAttendant",
                     "LocalTimeZoneEnabled": false
-                }
+                },
+                "conditions": []
             }
         ],
         "$leavingCustomActions": [],
@@ -622,7 +629,8 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5137"
             }
         ],
         "$conditionOutputs": [
@@ -649,7 +657,8 @@
                 "$invalid": false,
                 "stateId": "2b9bfb62-6346-4762-99ab-733d0c00d1a3",
                 "$connId": "con_38",
-                "$id": "d11142d1-520c-43bd-b95b-4160a61f51af"
+                "$id": "d11142d1-520c-43bd-b95b-4160a61f51af",
+                "$$hashKey": "object:5158"
             },
             {
                 "$isDeskOutput": true,
@@ -673,8 +682,9 @@
                 ],
                 "$invalid": false,
                 "stateId": "2b9bfb62-6346-4762-99ab-733d0c00d1a3",
-                "$connId": "con_43",
-                "$id": "e50bc685-bd27-459d-be68-e18fcff490d3"
+                "$connId": "con_73",
+                "$id": "e50bc685-bd27-459d-be68-e18fcff490d3",
+                "$$hashKey": "object:5159"
             }
         ],
         "$enteringCustomActions": [
@@ -729,7 +739,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5260"
             },
             {
                 "action": {
@@ -751,7 +762,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5261"
             },
             {
                 "action": {
@@ -778,7 +790,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5262"
             },
             {
                 "action": {
@@ -799,7 +812,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5263"
             },
             {
                 "input": {
@@ -818,7 +832,8 @@
                     "$invalid": false,
                     "variable": "score"
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5264"
             },
             {
                 "action": {
@@ -852,7 +867,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5265"
             },
             {
                 "action": {
@@ -860,7 +876,7 @@
                     "settings": {
                         "id": "dea1d712-9374-4990-8f99-5f38a06d5263",
                         "type": "text/plain",
-                        "content": "Obrigado pela participação.",
+                        "content": "Obrigado pelo retorno.",
                         "metadata": {
                             "#stateName": "{{state.name}}",
                             "#stateId": "{{state.id}}",
@@ -873,17 +889,34 @@
                         "document": {
                             "id": "dea1d712-9374-4990-8f99-5f38a06d5263",
                             "type": "text/plain",
-                            "content": "Obrigado pela participação."
+                            "content": "Obrigado pelo retorno."
                         },
                         "editable": true,
                         "deletable": true,
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:5266"
             }
         ],
-        "$conditionOutputs": [],
+        "$conditionOutputs": [
+            {
+                "stateId": "76bdea99-9a0f-4143-8782-001603742cc7",
+                "$connId": "con_48",
+                "$id": "ba705eb1-09f6-44f4-8629-607703a660ee",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "exists",
+                        "values": [],
+                        "$$hashKey": "object:5518"
+                    }
+                ],
+                "$invalid": false,
+                "$$hashKey": "object:5499"
+            }
+        ],
         "$enteringCustomActions": [
             {
                 "$id": "a28f3919-8ad0-4f52-82d4-04fabc8395c8",
@@ -893,7 +926,7 @@
                 "settings": {
                     "extras": {},
                     "category": "ST survey question",
-                    "action": "NPS Human"
+                    "action": "NPS Human|Count"
                 },
                 "conditions": []
             }
@@ -946,7 +979,7 @@
                 "settings": {
                     "extras": {},
                     "category": "ST survey answer",
-                    "action": "NPS Bot|{{npsCategory}}"
+                    "action": "NPS Human|{{npsCategory}}"
                 },
                 "conditions": [
                     {
@@ -1114,7 +1147,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:2987"
             },
             {
                 "action": {
@@ -1136,7 +1170,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:2988"
             },
             {
                 "action": {
@@ -1163,7 +1198,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:2989"
             },
             {
                 "action": {
@@ -1185,7 +1221,8 @@
                         "position": "left"
                     }
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:2990"
             },
             {
                 "input": {
@@ -1202,24 +1239,27 @@
                     },
                     "$invalid": false
                 },
-                "$invalid": false
+                "$invalid": false,
+                "$$hashKey": "object:2991"
             }
         ],
         "$conditionOutputs": [
             {
                 "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
-                "$connId": "con_48",
+                "$connId": "con_53",
                 "conditions": [
                     {
                         "source": "input",
                         "comparison": "matches",
                         "values": [
                             ".*"
-                        ]
+                        ],
+                        "$$hashKey": "object:3218"
                     }
                 ],
                 "$invalid": false,
-                "$id": "8053e8e9-e337-4c87-849b-3e23aec61108"
+                "$id": "8053e8e9-e337-4c87-849b-3e23aec61108",
+                "$$hashKey": "object:3199"
             }
         ],
         "$enteringCustomActions": [
@@ -1276,25 +1316,22 @@
                         "error": "Informe um tempo de inatividade"
                     }
                 },
-                "$invalid": false,
-                "$$hashKey": "object:14208"
+                "$invalid": false
             }
         ],
         "$conditionOutputs": [
             {
                 "stateId": "0a2d7b49-9df3-4e94-9714-eefd7ed84a6e",
-                "$connId": "con_53",
+                "$connId": "con_58",
                 "$id": "6e021ada-37eb-4f2d-acba-8c7f20c5dd45",
                 "conditions": [
                     {
                         "source": "input",
                         "comparison": "exists",
-                        "values": [],
-                        "$$hashKey": "object:14399"
+                        "values": []
                     }
                 ],
-                "$invalid": false,
-                "$$hashKey": "object:14380"
+                "$invalid": false
             }
         ],
         "$enteringCustomActions": [
@@ -1414,24 +1451,24 @@
                     }
                 },
                 "$invalid": false,
-                "$$hashKey": "object:14623"
+                "$$hashKey": "object:2363"
             }
         ],
         "$conditionOutputs": [
             {
                 "stateId": "a28e3bdf-3b48-40bc-953c-1caac72fdc21",
-                "$connId": "con_58",
+                "$connId": "con_63",
                 "$id": "7860d497-c74b-4fdd-9e67-4fefcf86d4c3",
                 "conditions": [
                     {
                         "source": "input",
                         "comparison": "exists",
                         "values": [],
-                        "$$hashKey": "object:14814"
+                        "$$hashKey": "object:2554"
                     }
                 ],
                 "$invalid": false,
-                "$$hashKey": "object:14795"
+                "$$hashKey": "object:2535"
             }
         ],
         "$enteringCustomActions": [
@@ -1485,7 +1522,7 @@
                 "$invalid": false,
                 "settings": {
                     "function": "run",
-                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst holiday_pattern = /holyday|feriado|folga|rest/i\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) =>\n            day.test(dr) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    const holidays = getVariableNames(desk_resources, day, queue, holiday_pattern);\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n        holidays: holidays\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n\n    offset = offset ? offset : 0;\n    if (resources.status != 'success') {\n        return {\n            start: 'no_resource',\n            end: 'no_resource',\n            days: 'no_resource',\n            holidays: 'no_resource'\n        };\n    \n    }\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
+                    "source": "const default_start = /inicio|opening|abertura/i;\nconst default_end = /fim|final|closing|fechamento|closure/i;\nconst default_work_days = /dias|days/i;\nconst desk_res = /desk/i;\nconst holiday_pattern = /holyday|feriado|folga|rest/i\nconst days = [\n    /sunday|domingo/i,\n    /monday|segunda|lunes/i,\n    /tuesday|ter[ç|c]a|martes/i,\n    /wednesday|quarta|mi(é|e)rcoles/i,\n    /jueves|thursday|quinta/i,\n    /friday|sexta|viernes/i,\n    /s(á|a)bado|saturday/i,\n];\n\nconst getVariableNames = (desk_resources, day, queue, needle) => {\n    const teamsAvailablePattern = new RegExp(queue.available, \"i\");\n    const res_day_queue = desk_resources.find(\n        (dr) =>\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            day.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_day_queue) return res_day_queue;\n    const res_queue = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            queue.hasKey &&\n            dr.toLowerCase().includes(queue.value.toLowerCase()) &&\n            needle.test(dr)\n    );\n    if (res_queue) return res_queue;\n    const res_day = desk_resources.find(\n        (dr) => \n            day.test(dr) && \n            !teamsAvailablePattern.test(dr) && \n            needle.test(dr)\n    );\n    if (res_day) return res_day;\n    const res_needle = desk_resources.find(\n        (dr) =>\n            !days.some((d) => d.test(dr)) &&\n            !teamsAvailablePattern.test(dr) &&\n            needle.test(dr)\n    );\n    if (res_needle) return res_needle;\n    return 'no_resource';\n};\n\nconst getStartAndEndVariableNames = (desk_resources, day, queue) => {\n    const start_name = getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_start\n    );\n    const end_name = getVariableNames(desk_resources, day, queue, default_end);\n    const days = day.test(start_name) || day.test(end_name) ? 'no_resource' : getVariableNames(\n        desk_resources,\n        day,\n        queue,\n        default_work_days\n    );\n    const holidays = getVariableNames(desk_resources, day, queue, holiday_pattern);\n    return {\n        start: start_name,\n        end: end_name,\n        days,\n        holidays: holidays\n    };\n};\n\nconst getTodayDate = (offset) => {\n    const now = new Date();\n    const utc_timestamp = Date.UTC(\n        now.getUTCFullYear(),\n        now.getUTCMonth(),\n        now.getUTCDate(),\n        now.getUTCHours(),\n        now.getUTCMinutes(),\n        now.getUTCSeconds(),\n        now.getUTCMilliseconds()\n    );\n\n    return new Date(utc_timestamp + offset * 3600 * 1000).getDay();\n};\n\nconst getDeskResource = (items) => items.filter((i) => desk_res.test(i)) || items;\n\nconst run = (resources, offset, queue) => {\n    queue = JSON.parse(queue);\n    resources = JSON.parse(resources);\n\n    offset = offset ? offset : 0;\n    if (resources.status != 'success') {\n        return {\n            start: 'no_resource',\n            end: 'no_resource',\n            days: 'no_resource',\n            holidays: 'no_resource'\n        };\n    \n    }\n    const desk_resources = getDeskResource(resources.resource.items);\n\n    const day = days[getTodayDate(offset)];\n    return getStartAndEndVariableNames(desk_resources, day, queue);\n};",
                     "inputVariables": [
                         "resourceResponse",
                         "resource.dateTimeOffset",
@@ -1510,6 +1547,191 @@
         "$position": {
             "top": "265px",
             "left": "523px"
+        },
+        "$invalidContentActions": false,
+        "$invalidOutputs": false,
+        "$invalidCustomActions": false,
+        "$invalid": false
+    },
+    "76bdea99-9a0f-4143-8782-001603742cc7": {
+        "$contentActions": [
+            {
+                "action": {
+                    "$id": "039b626a-9ba1-414d-93b8-2275804e39b2",
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "75df6053-a25a-41a1-9eb6-9ba27dec07f1",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "75df6053-a25a-41a1-9eb6-9ba27dec07f1",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "$id": "372278d2-8227-47a7-aad3-e66a79966005",
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "4749c535-385f-446c-a99a-fa7353f4758a",
+                        "type": "text/plain",
+                        "content": "Se você tiver um tempinho, adoraria saber o motivo da resposta. Só peço para que você escreva tudo em uma mensagem",
+                        "metadata": {}
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "4749c535-385f-446c-a99a-fa7353f4758a",
+                            "type": "text/plain",
+                            "content": "Se você tiver um tempinho, adoraria saber o motivo da resposta. Só peço para que você escreva tudo em uma mensagem"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "input": {
+                    "bypass": false,
+                    "$cardContent": {
+                        "document": {
+                            "id": "6c2a2430-5d03-4f95-a7c1-4c3839d693aa",
+                            "type": "text/plain",
+                            "textContent": "Entrada do usuário",
+                            "content": "Entrada do usuário"
+                        },
+                        "editable": false,
+                        "deletable": true,
+                        "position": "right",
+                        "editing": false
+                    },
+                    "$invalid": false
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "$id": "c6e7f677-1713-4a08-9eb5-98a171b9a4d6",
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "640787e1-34a0-4e47-86c3-6cc6ae6fbb1c",
+                        "type": "application/vnd.lime.chatstate+json",
+                        "content": {
+                            "state": "composing",
+                            "interval": 1000
+                        },
+                        "metadata": {
+                            "#stateName": "{{state.name}}",
+                            "#stateId": "{{state.id}}",
+                            "#messageId": "{{input.message@id}}",
+                            "#previousStateId": "{{state.previous.id}}",
+                            "#previousStateName": "{{state.previous.name}}"
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "640787e1-34a0-4e47-86c3-6cc6ae6fbb1c",
+                            "type": "application/vnd.lime.chatstate+json",
+                            "content": {
+                                "state": "composing",
+                                "interval": 1000
+                            }
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            },
+            {
+                "action": {
+                    "$id": "00c660d1-d2ca-4d49-bdb0-33cb838b6f94",
+                    "type": "SendMessage",
+                    "settings": {
+                        "id": "1b9e4997-1d7c-448b-a79a-acb49a9e1d50",
+                        "type": "text/plain",
+                        "content": "Obrigado pela participação!",
+                        "metadata": {
+                            "#stateName": "{{state.name}}",
+                            "#stateId": "{{state.id}}",
+                            "#messageId": "{{input.message@id}}",
+                            "#previousStateId": "{{state.previous.id}}",
+                            "#previousStateName": "{{state.previous.name}}"
+                        }
+                    },
+                    "$cardContent": {
+                        "document": {
+                            "id": "1b9e4997-1d7c-448b-a79a-acb49a9e1d50",
+                            "type": "text/plain",
+                            "content": "Obrigado pela participação!"
+                        },
+                        "editable": true,
+                        "deletable": true,
+                        "position": "left"
+                    }
+                },
+                "$invalid": false
+            }
+        ],
+        "$conditionOutputs": [
+            {
+                "stateId": "onboarding",
+                "$connId": "con_68",
+                "$id": "de3a3ccd-7f17-41f8-b0ec-eaf4b28289ae",
+                "conditions": [
+                    {
+                        "source": "input",
+                        "comparison": "exists",
+                        "values": []
+                    }
+                ],
+                "$invalid": false
+            }
+        ],
+        "$enteringCustomActions": [],
+        "$leavingCustomActions": [
+            {
+                "$id": "e403745d-b261-4393-96c0-1a1f119212a8",
+                "type": "TrackEvent",
+                "$title": "ST survey reason",
+                "$invalid": false,
+                "settings": {
+                    "extras": {},
+                    "category": "ST survey reason",
+                    "action": "NPS Bot|{{npsCategory}}|{{input.content}}"
+                },
+                "conditions": []
+            }
+        ],
+        "$inputSuggestions": [],
+        "$defaultOutput": {
+            "stateId": "fallback",
+            "$invalid": false
+        },
+        "$tags": [],
+        "id": "76bdea99-9a0f-4143-8782-001603742cc7",
+        "root": false,
+        "$title": "6.0 Motivo da Nota",
+        "$position": {
+            "top": "263px",
+            "left": "1818px"
         },
         "$invalidContentActions": false,
         "$invalidOutputs": false,
